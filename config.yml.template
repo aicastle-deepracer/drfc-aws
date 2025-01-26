@@ -1,0 +1,7 @@
+region: ap-northeast-2
+s3-bucket: drfc-mybucket
+instance-key-path: drfc-key.pem
+instance-id: i-0f9b6b6b6b6b6b6b6
+
+ec2-user: ubuntu  # ubuntu
+start-utc:  # 2025-01-14T01:13:11Z

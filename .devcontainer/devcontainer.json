@@ -1,0 +1,35 @@
+{
+    "name": "My Codespace Project",
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "hostRequirements": {
+        "cpus": 2
+    },
+    "customizations": {
+        "codespaces": {
+            // 기본으로 열릴 파일 설정
+            "openFiles": [
+                "reward_function.py",
+                "01_Instance.ipynb",
+                "02_Setup.ipynb",
+                "03_Train.ipynb"
+            ]
+        },
+        "vscode": {
+            // 확장 프로그램
+            "extensions": [
+                "ms-toolsai.jupyter",
+                "ms-python.python",
+                "github.copilot"
+            ],
+            "settings": {
+                "workbench.editorAssociations": {
+                    "README.md": "vscode.markdown.preview.editor",
+                    "00_Initialize.md": "vscode.markdown.preview.editor"
+                }
+            }
+        }
+    },
+
+    // 컨테이너가 생성될 때 실행할 명령
+    "updateContentCommand": "python3 -m pip install -r requirements.txt"
+}

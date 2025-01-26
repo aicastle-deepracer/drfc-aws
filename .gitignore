@@ -1,0 +1,8 @@
+config.yml
+.env
+*.pem
+
+mnt/
+venv/
+__pycache__/
+*.pyc
