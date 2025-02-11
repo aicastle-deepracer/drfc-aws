@@ -11,7 +11,7 @@
                 "reward_function.py",
                 "01_Instance.ipynb",
                 "02_Setup.ipynb",
-                "03_Train.ipynb"
+                "03_Training.ipynb"
             ]
         },
         "vscode": {

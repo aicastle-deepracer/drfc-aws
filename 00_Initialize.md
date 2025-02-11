@@ -114,6 +114,51 @@
         sudo apt install gpustat
         ```
 
+- deepracer_box_obstacle 밝기 키우기 (선택)
+    - simapp 컨테이너 실행 및 접속
+        ```bash
+        TAG=$(docker images --format "{{.Tag}}" awsdeepracercommunity/deepracer-simapp | head -n 1)
+        docker run -it --name temp-simapp awsdeepracercommunity/deepracer-simapp:$TAG bash
+
+        ```
+    - 이미지 밝기 키우기고 컨테이너 나가기
+        ```bash
+        python3 - <<EOF
+        from PIL import Image, ImageEnhance
+        import os
+
+        # 밝기 증가 비율
+        brightness_factor = 1.6
+
+        image_dir = "/opt/simapp/deepracer_simulation_environment/share/deepracer_simulation_environment/meshes/deepracer_box_obstacle/textures"
+        image_list = os.listdir(image_dir)
+
+        # 디렉터리 내 모든 이미지 처리
+        for filename in image_list:
+            if filename.lower().endswith((".jpg", ".jpeg", ".png")):
+                image_path = os.path.join(image_dir, filename)
+                try:
+                    image = Image.open(image_path)
+                    enhancer = ImageEnhance.Brightness(image)
+                    bright_image = enhancer.enhance(brightness_factor)
+                    bright_image.save(image_path)  # 원본 덮어쓰기
+                    print(f"✅ {image_path} 밝기 변경 완료")
+                except Exception as e:
+                    print(f"⚠️ {image_path} 처리 중 오류 발생: {e}")
+        EOF
+
+        exit
+
+        ```
+    - 새로운 이미지로 커밋
+        ```bash
+        TAG=$(docker images --format "{{.Tag}}" awsdeepracercommunity/deepracer-simapp | head -n 1)
+        docker commit temp-simapp awsdeepracercommunity/deepracer-simapp:$TAG
+        docker rm temp-simapp
+
+        ```
+
+
 ### 0.3.3. AMI 생성 및 인스턴스 종료
 - 인스턴스 선택 > 작업 > 이미지 및 템플릿 > 이미지 생성 > 이미지 이름( 예: `DRfC-ami`) > 이미지 생성
 
@@ -131,7 +176,7 @@
                 "Action": "s3:*",
                 "Resource": [
                     "arn:aws:s3:::drfc-<your-name>",
-                    "arn:aws:s3:::drfc-<your-name>/*",
+                    "arn:aws:s3:::drfc-<your-name>/*"
                 ]
             }
         ]
