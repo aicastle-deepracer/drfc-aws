@@ -18,9 +18,9 @@
         "vscode": {
             // 확장 프로그램
             "extensions": [
-                "ms-toolsai.jupyter",
+                "github.copilot",
                 "ms-python.python",
-                "github.copilot"
+                "ms-toolsai.jupyter"
             ],
             "settings": {
                 "workbench.editorAssociations": {
