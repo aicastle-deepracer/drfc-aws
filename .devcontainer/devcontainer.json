@@ -6,16 +6,9 @@
     },
     "customizations": {
         "codespaces": {
-            // 기본으로 열릴 파일 설정
-            "openFiles": [
-                "reward_function.py",
-                "01_Instance.ipynb",
-                "02_Setup.ipynb",
-                "03_Training.ipynb"
-            ]
+            "openFiles": []
         },
         "vscode": {
-            // 확장 프로그램
             "extensions": [
                 "ms-toolsai.jupyter",
                 "ms-python.python",
@@ -23,14 +16,13 @@
             ],
             "settings": {
                 "workbench.editorAssociations": {
-                    "*.ipynb": "jupyter-notebook", 
+                    "*.ipynb": "jupyter-notebook",
                     "README.md": "vscode.markdown.preview.editor",
                     "00_Initialize.md": "vscode.markdown.preview.editor"
                 }
             }
         }
     },
-
-    // 컨테이너가 생성될 때 실행할 명령
-    "updateContentCommand": "python3 -m pip install -r requirements.txt"
+    "updateContentCommand": "python3 -m pip install -r requirements.txt",
+    "postCreateCommand": "code reward_function.py 01_Instance.ipynb 02_Setup.ipynb 03_Training.ipynb"
 }
