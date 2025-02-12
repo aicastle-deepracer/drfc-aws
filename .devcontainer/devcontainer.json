@@ -23,6 +23,7 @@
             ],
             "settings": {
                 "workbench.editorAssociations": {
+                    "*.ipynb": "jupyter-notebook",
                     "README.md": "vscode.markdown.preview.editor",
                     "00_Initialize.md": "vscode.markdown.preview.editor"
                 }
